@@ -9,7 +9,7 @@ const columns = Math.floor(canvas.width / fontSize);
 
 const letters = "01アカサタナハマヤラワ";
 
-// 🔧 НАСТРОЙКИ (твои "ручки")
+// settings
 const CONFIG = {
     speedMin: 0.45,
     speedMax: 0.5,
@@ -18,16 +18,16 @@ const CONFIG = {
     maxLife: 100
 };
 
-// фон-дождь
+// fon-rain
 const rain = Array(columns).fill(1);
 
-// 🔥 активные падающие сообщения
+// active falling message
 let activeDrops = [];
 
-// 🔥 память сообщений
+// memory message
 let memoryMessages = [];
 
-// форма
+// forms
 document.getElementById("form").addEventListener("submit", function(e){
     e.preventDefault();
 
@@ -51,7 +51,7 @@ document.getElementById("form").addEventListener("submit", function(e){
     document.getElementById("msg").value = "";
 });
 
-// генерация случайного символа
+// generate random simbols
 function randomChar(){
     return letters[Math.floor(Math.random() * letters.length)];
 }
@@ -65,7 +65,7 @@ function draw(){
     ctx.fillStyle = "#0F0";
     ctx.font = fontSize + "px monospace";
 
-    // 🌧 фон
+    // fon rain
     for(let i = 0; i < rain.length; i++){
 
         const char = randomChar();
@@ -79,7 +79,7 @@ function draw(){
         rain[i]++;
     }
 
-    // 🔥 авто-повтор сообщений
+    // message-repeat
     if(Math.random() > CONFIG.spawnChance && memoryMessages.length > 0){
 
         let val = memoryMessages[Math.floor(Math.random() * memoryMessages.length)];
@@ -94,8 +94,7 @@ function draw(){
         });
     }
 
-    // 🔥 падающие строки
-    // 🔥 падающие строки (без смазывания)
+    // falling messages (without blurring)
     for(let i = activeDrops.length - 1; i >= 0; i--){
 
         let drop = activeDrops[i];
@@ -105,11 +104,11 @@ function draw(){
             let x = drop.x * fontSize;
             let y = (drop.y + j) * fontSize;
 
-            // 🧼 ОЧИСТКА области под текстом
+            // CLEARING the area under the text
             ctx.fillStyle = "rgba(0,0,0,1)";
             ctx.fillRect(x, y - fontSize, fontSize, fontSize);
 
-            // ✨ рисуем поверх
+            // draw on top
             if(j === 0){
                 ctx.fillStyle = "#AFFF9F";
             } else {
