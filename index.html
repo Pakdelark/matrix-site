@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Matrix Terminal</title>
+
+<style>
+body{
+    margin:0;
+    background:black;
+    color:#00ff00;
+    font-family:monospace;
+    overflow:hidden;
+}
+
+#ui{
+    position:fixed;
+    top:20px;
+    left:20px;
+    z-index:2;
+}
+
+h2{
+    margin:0 0 10px 0;
+}
+
+input{
+    background:black;
+    border:1px solid #0f0;
+    color:#0f0;
+    padding:5px;
+}
+
+button{
+    background:black;
+    border:1px solid #0f0;
+    color:#0f0;
+    padding:5px;
+}
+</style>
+</head>
+
+<body>
+
+<canvas id="matrix"></canvas>
+
+<div id="ui">
+<h2>Terminal</h2>
+
+<form id="form">
+<input id="msg" maxlength="100">
+<button type="submit">Send</button>
+</form>
+</div>
+
+<script src="matrix.js"></script>
+
+</body>
+</html>
